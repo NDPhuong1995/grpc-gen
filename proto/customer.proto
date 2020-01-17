@@ -1,0 +1,36 @@
+syntax = "proto3";
+import "base.proto";
+
+package customer;
+
+
+service CustomerService {
+    rpc CreateCustomer(CreateCustomerPayload) returns (CreateResult);
+    rpc UpdateCustomer(UpdateCustomerPayload) returns (UpdateResult);
+    rpc DeleteCustomer(DeleteCustomerPayload) returns (DeleteResult);
+}
+
+message CreateCustomerPayload {
+    string full_name = 1;
+    string email_address = 2;
+    string phone_number = 3;
+    string gender = 4;
+    string customer_class = 5;
+    string status = 6;
+    repeated string addresses = 10;
+}
+
+message UpdateCustomerPayload {
+    uint64 id = 1;
+    string full_name = 2;
+    string email_address = 3;
+    string phone_number = 4;
+    string gender = 5;
+    string customer_class = 6;
+    string status = 7;
+    repeated string addresses = 8;
+}
+
+message DeleteCustomerPayload {
+    repeated uint64 ids = 1;
+}

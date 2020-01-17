@@ -1,0 +1,71 @@
+syntax = "proto3";
+import "base.proto";
+
+package auth;
+
+service AuthService {
+    rpc CreateUser(CreateUserPayload) returns (CreateResult);
+    rpc UpdateUser(UpdateUserPayload) returns (UpdateResult);
+    rpc DeleteUser(DeleteUserPayload) returns (DeleteResult);
+    rpc ForgotPassword(ForgotPasswordPayload) returns (UpdateResult);
+    rpc ResetPassword(ResetPasswordPayload) returns (UpdateResult);
+    rpc ChangePassword(ChangePasswordPayload) returns (UpdateResult);
+    rpc ActivatedUser(ActivatedUserPayload) returns (UpdateResult);
+    rpc LockUser(LockedUserPayload) returns (UpdateResult);
+    rpc UnlockUser(UnlockUserPayload) returns (UpdateResult);
+}
+
+
+message CreateUserPayload {
+    string full_name = 1;
+    string address = 2;
+    string phone_number = 3;
+    string email_address = 4;
+    string gender = 5;
+    string username = 6;
+    string password = 7;
+    string lang = 8;
+    uint64 role_id = 9;
+}
+
+message UpdateUserPayload {
+    uint64 id = 1;
+    string full_name = 2;
+    string address = 3;
+    string phone_number = 4;
+    string email_address = 5;
+    string gender = 6;
+    string lang = 9;
+    uint64 role_id = 10;
+}
+
+message DeleteUserPayload {
+    repeated uint64 ids = 1;
+}
+
+message ForgotPasswordPayload {
+    string username = 1;
+}
+
+message ResetPasswordPayload {
+    string reset = 1;
+    string password = 2;
+}
+
+message ChangePasswordPayload {
+    string password = 1;
+    string new_password = 2;
+}
+
+message ActivatedUserPayload {
+    string key_active = 1;
+}
+
+message LockedUserPayload {
+    uint64 id = 1;
+    string locked_expired = 2;
+}
+
+message UnlockUserPayload {
+    uint64 id = 1;
+}

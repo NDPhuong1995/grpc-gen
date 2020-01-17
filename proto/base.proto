@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+message Empty {
+
+}
+
+message CreateResult {
+    uint64 id = 1;
+}
+
+message UpdateResult {
+    bool success = 1;
+}
+
+message DeleteResult {
+    bool success = 1;
+    int32 rowDelete = 2;
+}
